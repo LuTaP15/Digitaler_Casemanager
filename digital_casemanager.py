@@ -18,6 +18,13 @@ page_names = ["Einleitung",
               "Analyse und Weitere Schritte"]
 
 '''
+
+__author__      = "Paul Wunderlich"
+__copyright__ = "Copyright 2021, inIT work&care project"
+__email__ = "paul.wunderlich@th-owl.de"
+__status__ = "Dev"
+
+
 # Libaries
 import streamlit as st
 import pandas as pd
@@ -120,8 +127,8 @@ further_steps = ["Altersgerechtes Wohnen zu Hause", "Ambulante Pflege", "Arzt", 
 
 # Logos
 col1, col2 = st.columns(2)
-col1.image("Digitaler_Casemanager/images/Logo init 2021.png", width=256)
-col2.image("Digitaler_Casemanager/images/Logo work_care.png", width=256)
+col1.image("images/Logo init 2021.png", width=256)
+col2.image("images/Logo work_care.png", width=256)
 
 # Einleitung
 st.title("Digitaler Casemanager")
