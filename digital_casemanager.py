@@ -257,7 +257,8 @@ if start_inference:
 
     # Laden des gelernten Vorhersagemodells
     filename = 'models/multi-label-classif_v2.sav'
-    loaded_model = pickle.load(open(filename, 'rb'))
+    with open(filename, "rb") as input_file:
+        loaded_model = pickle.load(input_file)
 
     # Inference
     prediction = loaded_model.predict(answers)
