@@ -256,7 +256,7 @@ if start_inference:
         answers[column] = answers[column].map(vals_to_replace)
 
     # Laden des gelernten Vorhersagemodells
-    filename = '/models/multi-label-classif_v2.sav'
+    filename = 'models/multi-label-classif_v2.sav'
     loaded_model = pickle.load(open(filename, 'rb'))
 
     # Inference
