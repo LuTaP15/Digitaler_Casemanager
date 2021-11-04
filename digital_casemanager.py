@@ -232,7 +232,7 @@ with modul_7:
 ######################################
 # Weitere Schritte
 st.title(page_names[8])
-st.markdown('Durch das Klicken auf "Starte Analyse" beginnen starten Sie den Digitalen Case Manager.')
+st.markdown('Durch das Klicken auf "Starte Analyse" beginnen Sie den Digitalen Casemanager.')
 start_inference = st.button("Starte Analyse")
 
 # Inferenz
@@ -256,7 +256,7 @@ if start_inference:
         answers[column] = answers[column].map(vals_to_replace)
 
     # Laden des gelernten Vorhersagemodells
-    filename = './models/multi-label-classif_v2.sav'
+    filename = '/models/multi-label-classif_v2.sav'
     loaded_model = pickle.load(open(filename, 'rb'))
 
     # Inference
