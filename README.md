@@ -6,4 +6,7 @@ The project is still ongoing as well as the Digital Casemanager.
 
 The Digital Casemanager is developed by the TH OWL in Lemgo.
 
+Website of the project:
+https://www.init-owl.de/forschung/projekte/detail/innovative-unterstuetzung-fuer-unternehmen-und-pflegende-erwerbstaetige-bei-der-vereinbarkeit-von-beruf-und-pflege-1/
+
 Contact: paul.wunderlich@th-owl.de
