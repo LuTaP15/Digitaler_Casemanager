@@ -19,8 +19,8 @@ page_names = ["Einleitung",
 
 '''
 
-__author__      = "Paul Wunderlich"
-__copyright__ = "Copyright 2021, inIT work&care project"
+__author__ = "Paul Wunderlich"
+__copyright__ = "Copyright 2022, inIT work&care project"
 __email__ = "paul.wunderlich@th-owl.de"
 __status__ = "Dev"
 
@@ -138,7 +138,7 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
 
     # Logos
     col1, col2 = st.columns(2)
-    col1.image("images/Logo init 2021.png", width=256)
+    col1.image("images/InIT-Logo.png", width=256)
     col2.image("images/Logo work_care.png", width=256)
 
     # Einleitung
@@ -156,20 +156,27 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
     explanation = st.expander("Erläuterung zu den Modulen")
     with explanation:
         st.markdown("Die Fragestellungen sind in folgende sieben Module unterteilt: ")
-        st.markdown("* **Modul 1 „Mobilität“:**  Hier finden Sie Fragen nach der Inanspruchnahme von fremder Hilfe wie "
-                        "beispielsweise beim Aufstehen oder Treppensteigen.")
-        st.markdown("* **Modul 2 „Kognitive und kommunikative Fähigkeiten“:**  In diesem Modul werden Fragen nach "
-                        "geistigen Beeinträchtigungen gestellt wie etwa: Kann sich die zupflegende Person mitteilen?")
-        st.markdown("* **Modul 3 „Verhaltensweisen und psychische Problemlagen“:** In diesem Modul werden Fragen bezüglich "
-                        "aggressiven Verhaltens, zu Ängsten oder traurigen Stimmungslagen des Betroffenen gestellt.")
-        st.markdown("* **Modul 4 „Selbstversorgung“:** Dieses Modul beinhaltet Fragestellungen hinsichtlich der "
-                        "Körperpflege und der Haushaltsführung.")
-        st.markdown("* **Modul 5 „Umgang mit krankheits- oder therapiebedingten Anforderungen“:** Hier finden Sie Fragen, "
-                        "ob Ihr Angehöriger selbständig Medikamente einnehmen oder Blutzucker messen kann.")
-        st.markdown("* **Modul 6 „Gestaltung des Alltagslebens und sozialer Kontakte“:** In diesem Modul liegt "
+        st.markdown("* **Modul 1 „Mobilität“:**  \n"  
+                    " Hier finden Sie Fragen nach der Inanspruchnahme von fremder Hilfe wie "
+                    "beispielsweise beim Aufstehen oder Treppensteigen.")
+        st.markdown("* **Modul 2 „Kognitive und kommunikative Fähigkeiten“:**  \n"
+                    "In diesem Modul werden Fragen nach "
+                    "geistigen Beeinträchtigungen gestellt wie etwa: Kann sich die zupflegende Person mitteilen?")
+        st.markdown("* **Modul 3 „Verhaltensweisen und psychische Problemlagen“:**  \n"
+                    "In diesem Modul werden Fragen bezüglich "
+                    "aggressiven Verhaltens, zu Ängsten oder traurigen Stimmungslagen des Betroffenen gestellt.")
+        st.markdown("* **Modul 4 „Selbstversorgung“:**  \n"
+                    "Dieses Modul beinhaltet Fragestellungen hinsichtlich der "
+                    "Körperpflege und der Haushaltsführung.")
+        st.markdown("* **Modul 5 „Umgang mit krankheits- oder therapiebedingten Anforderungen“:**  \n"
+                    "Hier finden Sie Fragen, "
+                    "ob Ihr Angehöriger selbständig Medikamente einnehmen oder Blutzucker messen kann.")
+        st.markdown("* **Modul 6 „Gestaltung des Alltagslebens und sozialer Kontakte“:**  \n"
+                    "In diesem Modul liegt "
                     "der Schwerpunkt auf der Frage, ob die zu pflegende Person ihren Alltag selbständig planen und mit "
                     "anderen Menschen in Kontakt treten kann.")
-        st.markdown("* **Modul 7 „Gestaltung der Betreuung“:** Im letzten Modul werden Sie danach gefragt, welche Personen"
+        st.markdown("* **Modul 7 „Gestaltung der Betreuung“:**  \n"
+                    "Im letzten Modul werden Sie danach gefragt, welche Personen"
                     " die zu pflegende Person unterstützen oder betreuen.")
 
     st.markdown("Nach der Beantwortung aller Fragen erhalten Sie passende Empfehlungen für die weitere Versorgung "
