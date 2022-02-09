@@ -1,7 +1,6 @@
 '''
 Run Befehl ist:
 streamlit run "C:/Users/Paul Wunderlich/PycharmProjects/Digitaler_Casemanager/digital_casemanager.py"
-
 ##################################
 # Markdown Template:
 st.markdown("* **Modul:**  Text")
@@ -18,12 +17,11 @@ page_names = ["Einleitung",
               "Analyse und Weitere Schritte"]
 
 '''
-
+# Credits
 __author__ = "Paul Wunderlich"
 __copyright__ = "Copyright 2022, inIT work&care project"
 __email__ = "paul.wunderlich@th-owl.de"
 __status__ = "Dev"
-
 
 # Libaries
 import streamlit as st
@@ -32,16 +30,6 @@ import pickle
 
 ####################################################################################################
 # Predefine variables
-page_names = ["Einleitung",
-              "Modul 1",
-              "Modul 2",
-              "Modul 3",
-              "Modul 4",
-              "Modul 5",
-              "Modul 6",
-              "Modul 7",
-              "Analyse und Weitere Schritte"]
-
 questions = ["Positionswechsel im Bett (bspw. Drehen und Wenden im Bett)",
               "Halten in der Sitzposition",
               "Aufstehen aus dem Sitz",
@@ -109,32 +97,54 @@ answers_c = ["Keine Auffälligkeiten",
 answers_d = ["Ja",
              "Nein"]
 
-answers_modul_1 = [answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a]
-answers_modul_2 = [answers_b, answers_b, answers_b, answers_b, answers_b, answers_b, answers_b]
-answers_modul_3 = [answers_c, answers_c, answers_c, answers_c]
-answers_modul_4 = [answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a]
-answers_modul_5 = [answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a, answers_a]
-answers_modul_6 = [answers_b, answers_b, answers_b, answers_b]
-answers_modul_7 = [answers_d, answers_d, answers_d, answers_d, answers_d, answers_d]
-
 # Initialze further steps
 further_steps = ["Altersgerechtes Wohnen zu Hause", "Ambulante Pflege", "Arzt", "Betreuung & Begleitung", "Einkauf",
                  "Ergotherapie", "Ernährung", "Haushaltshilfe", "Hilfsmittel", "Logopädie", "Medikamente",
                  "Mobilität & Bewegung", "Physiotherapie", "Psychotherapie", "Selbsthilfe & Unterstützungsangebote",
-                 "Stationäre Pflege"]
+                 "Stationäre Pflege", "Nichts"]
+####################################################################################################
+# Funktionen
+
+
+def recommend_next_steps(antworten):
+
+    # Erstellung eines dictionaries aus zwei Listen -> data=Liste von Listen
+    dict_data = dict(zip(questions, antworten))
+
+    answers = pd.DataFrame.from_dict(dict_data)
+
+    # Antworten in Zahlen umwandeln
+    vals_to_replace = {"Ohne fremde Hilfe möglich": 1, "Etwas fremde Hilfe nötig": 2,
+                        "Überwiegend fremde Hilfe nötig": 3,
+                        "Komplett fremde Hilfe nötig": 4, "Nicht erforderlich": 0,
+                        "Immer": 1, "Häufig": 2, "Selten": 3, "Nie": 4,
+                        "Keine Auffälligkeiten": 1, "Leichte Auffälligkeiten": 2, "Mäßige Auffälligkeiten": 3,
+                        "Schwere Auffälligkeiten": 4,
+                        "Ja": 1, "Nein": 2}
+    for column in answers:
+        answers[column] = answers[column].map(vals_to_replace)
+
+    # Laden des gelernten Vorhersagemodells
+    filename = './models/multi-label-clf_v4.sav'
+    loaded_model = pickle.load(open(filename, 'rb'))
+
+    # Inference
+    prediction = loaded_model.predict(answers)
+
+    return prediction
 
 ####################################################################################################
 # Passwortmanager in der Sidebar
-st.sidebar.title("Digitaler Casemanager")
+st.sidebar.title("Digitaler Case Manager")
 st.sidebar.markdown("Bitte geben Sie den Benutzernamen und das Passwort ein und setzen den Haken neben Login!")
 username = st.sidebar.text_input("Benutzername:")
-password = st.sidebar.text_input("Passwort:", type='password')
+password = st.sidebar.text_input("Passwort:",type='password')
 
-# Falls Login korrekt -> Digitaler Casemanager
+
+# Falls Login korrekt -> Digitaler Case Manager
 if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and password == st.secrets["admin_password"]:
     # Erfolgsmeldung in der Sidebar
     st.sidebar.success("Anmeldung erfolgreich!")
-
 
     # Logos
     col1, col2 = st.columns(2)
@@ -142,7 +152,9 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
     col2.image("images/Logo work_care.png", width=256)
 
     # Einleitung
-    st.title("Digitaler Casemanager")
+    st.title("Digitaler Case Manager")
+
+
     st.markdown("### Einleitung")
     st.markdown("Wir möchten mit dem digitalen Case Manager eine erste Anlaufstelle für Menschen mit Informationsbedarf "
                 "im Bereich Pflege bieten und auch für diejenigen einen einfachen Zugang zu situationsbezogenen Informationen schaffen,"
@@ -185,101 +197,115 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
                 "und barrierefreien Wohnangeboten sowie jede Menge Informationen, die Ihre Situation betreffen.")
 
     ######################################
+    ## Horizontale Auswahlmöglichkeiten
+    #st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
     # Modul 1
     modul_1 = st.expander("Modul 1: Mobilität", expanded=False)
     with modul_1:
         # Questions for Modul 1
+        m1_1, m1_2, m1_3, m1_4, m1_5, m1_6, m1_7 = st.empty(), st.empty(), st.empty(), st.empty(),\
+                                                   st.empty(), st.empty(), st.empty()
+
         m1 = []
-        for i, question in enumerate(questions[0:7]):
-            m1.append([st.radio(f"{i+1}. {question}:", answers_modul_1[i])])
+        m1_keys = ["m1f1", "m1f2", "m1f3", "m1f4", "m1f5", "m1f6", "m1f7"]
+        m1_ids = (m1_1, m1_2, m1_3, m1_4, m1_5, m1_6, m1_7)
+        for i, elem in enumerate(m1_ids):
+            m1.append([elem.radio(f"{i+1}. {questions[i]}:", answers_a, key=m1_keys[i])])
 
     ######################################
     # Modul 2
     modul_2 = st.expander("Modul 2: Kognitive und kommunikative Fähigkeiten", expanded=False)
     with modul_2:
         # Questions for Modul 2
+        m2_1, m2_2, m2_3, m2_4, m2_5, m2_6, m2_7 = st.empty(), st.empty(), st.empty(), st.empty(),\
+                                                   st.empty(), st.empty(), st.empty()
+
         m2 = []
-        for i, question in enumerate(questions[7:14]):
-            m2.append([st.radio(f"{i+7+1}. {question}:", answers_modul_2[i])])
+        m2_keys = ["m2f1", "m2f2", "m2f3", "m2f4", "m2f5", "m2f6", "m2f7"]
+        m2_ids = (m2_1, m2_2, m2_3, m2_4, m2_5, m2_6, m2_7)
+        for i, elem in enumerate(m2_ids):
+            m2.append([elem.radio(f"{i+8}. {questions[i+7]}:", answers_b, key=m2_keys[i])])
 
     ######################################
     # Modul 3
     modul_3 = st.expander("Modul 3: Verhaltensweisen und psychische Problemlagen", expanded=False)
     with modul_3:
         # Questions for Modul 3
+        m3_1, m3_2, m3_3, m3_4 = st.empty(), st.empty(), st.empty(), st.empty()
+
         m3 = []
-        for i, question in enumerate(questions[14:18]):
-            m3.append([st.radio(f"{i+14+1}. {question}:", answers_modul_3[i])])
+        m3_keys = ["m3f1", "m3f2", "m3f3", "m3f4"]
+        m3_ids = (m3_1, m3_2, m3_3, m3_4)
+        for i, elem in enumerate(m3_ids):
+            m3.append([elem.radio(f"{i+15}. {questions[i+14]}:", answers_b, key=m3_keys[i])])
 
     ######################################
     # Modul 4
     modul_4 = st.expander("Modul 4: Selbstversorgung", expanded=False)
     with modul_4:
         # Questions for Modul 4
+        m4_1, m4_2, m4_3, m4_4, m4_5, m4_6 = st.empty(), st.empty(), st.empty(), st.empty(), st.empty(), st.empty()
+        m4_7, m4_8, m4_9, m4_10, m4_11 = st.empty(), st.empty(), st.empty(), st.empty(), st.empty()
+
         m4 = []
-        for i, question in enumerate(questions[18:29]):
-            m4.append([st.radio(f"{i+18+1}. {question}:", answers_modul_4[i])])
+        m4_keys = ["m4f1", "m4f2", "m4f3", "m4f4", "m4f5", "m4f6", "m4f7", "m4f8", "m4f9", "m4f10", "m4f11"]
+        m4_ids = (m4_1, m4_2, m4_3, m4_4, m4_5, m4_6, m4_7, m4_8, m4_9, m4_10, m4_11)
+        for i, elem in enumerate(m4_ids):
+            m4.append([elem.radio(f"{i+19}. {questions[i+18]}:", answers_a, key=m4_keys[i])])
 
     ######################################
     # Modul 5
     modul_5 = st.expander("Modul 5: Umgang mit krankheits- oder therapiebedingten Anforderungen", expanded=False)
     with modul_5:
         # Questions for Modul 5
+        m5_1, m5_2, m5_3, m5_4 = st.empty(), st.empty(), st.empty(), st.empty()
+        m5_5, m5_6, m5_7, m5_8 = st.empty(), st.empty(), st.empty(), st.empty()
+
         m5 = []
-        for i, question in enumerate(questions[29:37]):
-            m5.append([st.radio(f"{i+29+1}. {question}:", answers_modul_5[i])])
+        m5_keys = ["m5f1", "m5f2", "m5f3", "m5f4", "m5f5", "m5f6", "m5f7", "m5f8"]
+        m5_ids = (m5_1, m5_2, m5_3, m5_4, m5_5, m5_6, m5_7, m5_8)
+        for i, elem in enumerate(m5_ids):
+            m5.append([elem.radio(f"{i+30}. {questions[i+29]}:", answers_a, key=m5_keys[i])])
 
     ######################################
     # Modul 6
     modul_6 = st.expander("Modul 6: Gestaltung des Alltagslebens und sozialer Kontakte", expanded=False)
     with modul_6:
         # Questions for Modul 6
+        m6_1, m6_2, m6_3, m6_4 = st.empty(), st.empty(), st.empty(), st.empty()
+
         m6 = []
-        for i, question in enumerate(questions[37:41]):
-            m6.append([st.radio(f"{i+37+1}. {question}:", answers_modul_6[i])])
+        m6_keys = ["m6f1", "m6f2", "m6f3", "m6f4"]
+        m6_ids = m6_1, m6_2, m6_3, m6_4
+        for i, elem in enumerate(m6_ids):
+            m6.append([elem.radio(f"{i+38}. {questions[i+37]}:", answers_b, key=m6_keys[i])])
 
     ######################################
     # Modul 7
     modul_7 = st.expander("Modul 7: Gestaltung der Betreuung", expanded=False)
     with modul_7:
         # Questions for Modul 7
+        m7_1, m7_2, m7_3, m7_4, m7_5, m7_6 = st.empty(), st.empty(), st.empty(), st.empty(), st.empty(), st.empty()
+
         m7 = []
-        for i, question in enumerate(questions[41:47]):
-            m7.append([st.radio(f"{i+41+1}. {question}:", answers_modul_7[i])])
+        m7_keys = ["m7f1", "m7f2", "m7f3", "m7f4", "m7f5", "m7f6"]
+        m7_ids = m7_1, m7_2, m7_3, m7_4, m7_5, m7_6
+        for i, elem in enumerate(m7_ids):
+            m7.append([elem.radio(f"{i+42}. {questions[i+41]}:", answers_d, key=m7_keys[i])])
 
     ######################################
     # Weitere Schritte
-    st.title(page_names[8])
-    st.markdown('Durch das Klicken auf "Starte Analyse" beginnen Sie den Digitalen Casemanager.')
+    st.title("Analyse und Weitere Schritte")
+    st.markdown('Durch das Klicken auf "Starte Analyse" beginnen starten Sie den Digitalen Case Manager.')
     start_inference = st.button("Starte Analyse")
 
     # Inferenz
     if start_inference:
         antworten = m1 + m2 + m3 + m4 + m5 + m6 + m7
 
-        # Erstellung eines dictionaries aus zwei Listen -> data=Liste von Listen
-        dict_data = dict(zip(questions, antworten))
-
-        answers = pd.DataFrame.from_dict(dict_data)
-
-        # Antworten in Zahlen umwandeln
-        vals_to_replace = {"Ohne fremde Hilfe möglich": 1, "Etwas fremde Hilfe nötig": 2,
-                           "Überwiegend fremde Hilfe nötig": 3,
-                           "Komplett fremde Hilfe nötig": 4, "Nicht erforderlich": 0,
-                           "Immer": 1, "Häufig": 2, "Selten": 3, "Nie": 4,
-                           "Keine Auffälligkeiten": 1, "Leichte Auffälligkeiten": 2, "Mäßige Auffälligkeiten": 3,
-                           "Schwere Auffälligkeiten": 4,
-                           "Ja": 1, "Nein": 2}
-        for column in answers:
-            answers[column] = answers[column].map(vals_to_replace)
-
-        # Laden des gelernten Vorhersagemodells
-        filename = 'models/multi-label-classif_v2.sav'
-        with open(filename, "rb") as input_file:
-            loaded_model = pickle.load(input_file)
-
         # Inference
-        prediction = loaded_model.predict(answers)
+        prediction = recommend_next_steps(antworten)
 
         # Umwandeln der Vorhersage in Text
         for column in range(len(prediction)):
@@ -288,9 +314,20 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
             for i in indices:
                 pred_steps.append(further_steps[i])
 
-            st.subheader("Weitere Pflegeschritte")
-            for step in pred_steps:
-                st.markdown(f"* {step}")
+            # Check ob weitere Pflegeschritte empfohlen wurden
+            if pred_steps == ["Nichts"]:
+                st.markdown("#### Anhand der gegebenen Antworten werden Ihnen keine weiteren Pflegeschritte empfohlen.")
+            elif pred_steps:
+                st.markdown("#### Es werden Ihnen folgende weitere Pflegeschritte empfohlen:")
+                for step in pred_steps:
+                    st.markdown(f"* {step}")
+            else:
+                st.subheader("Hier ist etwas schief gelaufen. Bitte wiederholen Sie den Digitalen Case Manager.")
+
 
 else:
     st.sidebar.error("Benutzername / Passwort war nicht korrekt oder Sie haben den Haken vergessen!")
+
+# Developer and Email
+st.sidebar.markdown("__Developed by Paul Wunderlich__")
+st.sidebar.markdown("__Email: paul.wunderlich@th-owl.de__")
