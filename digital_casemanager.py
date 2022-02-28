@@ -238,7 +238,7 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
         m3_keys = ["m3f1", "m3f2", "m3f3", "m3f4"]
         m3_ids = (m3_1, m3_2, m3_3, m3_4)
         for i, elem in enumerate(m3_ids):
-            m3.append([elem.radio(f"{i+15}. {questions[i+14]}:", answers_b, key=m3_keys[i])])
+            m3.append([elem.radio(f"{i+15}. {questions[i+14]}:", answers_c, key=m3_keys[i])])
 
     ######################################
     # Modul 4
