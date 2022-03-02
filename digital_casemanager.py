@@ -161,7 +161,7 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
                 " die keinen Pflegestützpunkt oder eine sonstige Beratungsstelle in ihrer Nähe haben. Unser Anliegen ist es, pflegebedürftige "
                 "Menschen und ihre Angehörigen schnell und bequem mit dem Wissen zu versorgen, was sie in ihrer Situation brauchen. "
                 "Unser Datenintelligenz-gestützter digitale Case Manager ist kostenlos und rund um die Uhr nutzbar. "
-                "So funktioniert unser digitaler Case Manager Unser digitaler Case Manager funktioniert schnell und unkompliziert: "
+                "So funktioniert unser digitaler Case Manager schnell und unkompliziert: "
                 "Sie beantworten Fragen zu Ihrem Gesundheitszustand und zu Ihrem Unterstützungsbedarf via Mausklick, um Ihre Pflegesituation zu erfassen. "
                 )
 
