@@ -328,6 +328,14 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
 else:
     st.sidebar.error("Benutzername / Passwort war nicht korrekt oder Sie haben den Haken vergessen!")
 
+#Funding
+st.sidebar.markdown("*Diese Arbeit wurde im Rahmen des Projekts work & care entwickelt. "
+                    "Das Projekt wird vom Ministerium für Wirtschaft, Innovation, Digitalisierung und Energie des Landes "
+                    "Nordrhein-Westfalen (MWIDE NRW) unter dem Förderkennzeichen __34.EFRE-0300198__ gefördert.*")
+st.sidebar.image("Fragebogen/images/EFRE_Foerderhinweis_deutsch_farbig.jpg")
+st.sidebar.image("Fragebogen/images/nrw-mweimh-logo.jpg")
+st.sidebar.image("Fragebogen/images/Ziel2NRW_RGB_1809_jpg.jpg")    
+    
 # Developer and Email
 st.sidebar.markdown("__Developed by Paul Wunderlich__")
 st.sidebar.markdown("__Email: paul.wunderlich@th-owl.de__")
