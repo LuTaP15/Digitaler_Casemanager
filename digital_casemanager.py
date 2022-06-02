@@ -155,15 +155,14 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
     st.title("Digitaler Case Manager")
 
 
-    st.markdown("### Einleitung")
-    st.markdown("Wir möchten mit dem digitalen Case Manager eine erste Anlaufstelle für Menschen mit Informationsbedarf "
-                "im Bereich Pflege bieten und auch für diejenigen einen einfachen Zugang zu situationsbezogenen Informationen schaffen,"
-                " die keinen Pflegestützpunkt oder eine sonstige Beratungsstelle in ihrer Nähe haben. Unser Anliegen ist es, pflegebedürftige "
-                "Menschen und ihre Angehörigen schnell und bequem mit dem Wissen zu versorgen, was sie in ihrer Situation brauchen. "
-                "Unser Datenintelligenz-gestützter digitale Case Manager ist kostenlos und rund um die Uhr nutzbar. "
-                "So funktioniert unser digitaler Case Manager schnell und unkompliziert: "
-                "Sie beantworten Fragen zu Ihrem Gesundheitszustand und zu Ihrem Unterstützungsbedarf via Mausklick, um Ihre Pflegesituation zu erfassen. "
-                )
+    st.markdown("### Herzlich Willkommen zum Digitalen Case Manager! ")
+    st.markdown("Zunächst möchten wir Ihnen die Inhalte der digitalen Versorgungsplanung kurz vorstellen. "
+                "In den folgenden Modulen finden Sie Fragen zu den Bereichen: Mobilität, kognitive und "
+                "kommunikative Fähigkeiten, Verhaltensweisen und psychische Problemlagen, Selbstversorgung, "
+                "Umgang mit krankheits- oder therapiebedingten Anforderungen, Gestaltung des Alltagslebens "
+                "und der sozialen Kontakte sowie der Gestaltung der derzeitigen Betreuungssituation. Gerne "
+                "können Sie sich hierzu in der nachstehenden Dropbox informieren."
+               )
 
     explanation = st.expander("Erläuterung zu den Modulen")
     with explanation:
@@ -191,10 +190,14 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
                     "Im letzten Modul werden Sie danach gefragt, welche Personen"
                     " die zu pflegende Person unterstützen oder betreuen.")
 
-    st.markdown("Nach der Beantwortung aller Fragen erhalten Sie passende Empfehlungen für die weitere Versorgung "
-                "und/ oder mögliche nächste Pflegeschritte mit Hinweisen auf "
-                "Pflege- und Gesundheitseinrichtungen und –dienstleistern, Pflegehilfsmitteln "
-                "und barrierefreien Wohnangeboten sowie jede Menge Informationen, die Ihre Situation betreffen.")
+    st.markdown("Diese Module orientieren sich an dem Auskunftsbogen zur Vorbereitung auf eine Pflegebegutachtung des "
+                "[Medizinischen Dienstes (MD)](https://www.medizinischerdienst.de/). Diese Pflegebegutachtung ist erforderlich, "
+                "wenn Sie Leistungen im Rahmen der gesetzlichen Pflegeversicherung beantragen möchten."
+               )
+    
+    st.markdown("##### Fragebogen")
+    st.markdown("Nehmen Sie sich nun etwas Zeit zur Beantwortung der Fragen, um sich ein umfassendes Bild über Ihre "
+                "Möglichkeiten zur Versorgungsplanung in Ihrer derzeitigen Pflegesituation zu verschaffen. ")
 
     ######################################
     ## Horizontale Auswahlmöglichkeiten
