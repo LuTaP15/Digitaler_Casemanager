@@ -156,8 +156,8 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
 
 
     st.markdown("### Herzlich Willkommen zum Digitalen Case Manager! ")
-    st.markdown("Zunächst möchten wir Ihnen die Inhalte der digitalen Versorgungsplanung kurz vorstellen. "
-                "In den folgenden Modulen finden Sie Fragen zu den Bereichen: Mobilität, kognitive und "
+    st.markdown("Zunächst möchten wir Ihnen den digitalen Case Manager kurz vorstellen.")
+    st.markdown("In den folgenden Modulen finden Sie Fragen zu den Bereichen: Mobilität, kognitive und "
                 "kommunikative Fähigkeiten, Verhaltensweisen und psychische Problemlagen, Selbstversorgung, "
                 "Umgang mit krankheits- oder therapiebedingten Anforderungen, Gestaltung des Alltagslebens "
                 "und der sozialen Kontakte sowie der Gestaltung der derzeitigen Betreuungssituation. Gerne "
@@ -191,7 +191,7 @@ if st.sidebar.checkbox("Login") and username == st.secrets["admin_name"] and pas
                     " die zu pflegende Person unterstützen oder betreuen.")
 
     st.markdown("Diese Module orientieren sich an dem Auskunftsbogen zur Vorbereitung auf eine Pflegebegutachtung des "
-                "[Medizinischen Dienstes (MD)](https://www.medizinischerdienst.de/). Diese Pflegebegutachtung ist erforderlich, "
+                "[Medizinischen Dienstes](https://www.medizinischerdienst.de/). Diese Pflegebegutachtung ist erforderlich, "
                 "wenn Sie Leistungen im Rahmen der gesetzlichen Pflegeversicherung beantragen möchten."
                )
     
