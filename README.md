@@ -8,7 +8,8 @@ This project aims to provide innovative support for companies and caregiving emp
 
 Specifically, the Digital Case Manager is a tool designed to help these individuals manage their workload and care responsibilities more effectively.
 
-For more information about the project, visit the official website 🔍: 
+🔍 For more information about the project, visit the official website: 
+
 https://www.init-owl.de/en/research/projects/detail/innovative-unterstuetzung-fuer-unternehmen-und-pflegende-erwerbstaetige-bei-der-vereinbarkeit-von-beruf-und-pflege-1/ 
 
 For any inquiries, please email 📧 paul.wunderlich@th-owl.de
