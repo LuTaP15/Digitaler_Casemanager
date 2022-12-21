@@ -1,6 +1,6 @@
 # Digital Case Manager 💻🏥
 
-Welcome to the repository for the Digital Case Manager, a project developed in the research work & care funded by the Ministry of Economic Affairs, Innovation, Digitalization, and Energy of the State of North Rhine-Westphalia (MWIDE NRW) under grant number 34.EFRE-0300198.
+Welcome to the repository for the Digital Case Manager, a project developed in the research project work & care funded by the Ministry of Economic Affairs, Innovation, Digitalization, and Energy of the State of North Rhine-Westphalia (MWIDE NRW) under grant number 34.EFRE-0300198.
 
 The Digital Case Manager is developed by the TH OWL in Lemgo and is currently still ongoing. 🚀
 
